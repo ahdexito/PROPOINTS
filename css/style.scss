@@ -1,0 +1,555 @@
+// ======================================================== //
+// === FONTS === //
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+$font-primary: 'Poppins', sans-serif;
+$font-secondary: 'Oswald', sans-serif;
+
+
+// ======================================================== //
+// === COLOR PALETTE === //
+
+$color-light: #ffffff;
+$color-dark: #000000;
+$color-shade: #2a2a2a7d;
+
+$color-global-button: #e3ff38;
+$color-button-whatsapp: #40cf4b;
+
+$color-global-1: #57bf8c;
+$color-global-1-dark: #007a44;
+$color-global-2: #3ec1d3;
+$color-global-2-dark: #00446d;
+$color-global-3: #bae1f6;
+$color-global-3-dark: #1f3970;
+
+
+// ======================================================== //
+// === RESPONSIVE BREAKPOINTS === //
+
+$breakpoint-sm: 600px;
+$breakpoint-md: 900px;
+$breakpoint-lg: 1200px;
+$breakpoint-xl: calc($breakpoint-lg + 1px);
+
+
+// ======================================================== //
+// === MIXINS === //
+
+// Media queries
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == sm {
+        @media (max-width: $breakpoint-sm) { @content; }
+    } @else if $breakpoint == md {
+        @media (max-width: $breakpoint-md) { @content; }
+    } @else if $breakpoint == lg {
+        @media (max-width: $breakpoint-lg) { @content; }
+    } @else if $breakpoint == xl {
+        @media (min-width: $breakpoint-xl) { @content; }
+    }
+}
+
+// Centrado flexbox
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+// ======================================================== //
+// === KEYFRAMES === //
+
+@keyframes slideInLeft {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInDown {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+// ======================================================== //
+// === BASE STYLES === //
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-primary;
+    color: $color-light;
+}
+
+section {
+    padding: 20px 5% 100px;
+    gap: 20px;
+    background-color: var(--section-color);
+    box-shadow: inset $color-shade 0 0 50px;
+
+    @include flex-center;
+
+    .row {
+        @include flex-center;
+        flex-direction: row;
+        gap: 20px;
+        width: 100%;
+        align-items: stretch;
+
+        @include respond-to(md) {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    .col {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
+        gap: 20px;
+
+        @include respond-to(md) {
+            max-width: $breakpoint-sm;
+        }
+
+        &.image-container {
+            width: 80%;
+            min-height: 200px;
+
+            @include respond-to(md) {
+                width: 100%;
+            }
+
+            @include respond-to(lg) {
+                height: auto;
+            }
+        }
+    }
+
+    // Alternar colores de artículos
+    &#como-funciona { 
+        --section-color: #{$color-global-2}; 
+        --section-dark-color: #{$color-global-2-dark};
+    }
+    &#tipos {
+        --section-color: #{$color-global-1};
+        --section-dark-color: #{$color-global-1-dark};
+    }
+    &#reconocimiento {
+        --section-color: #{$color-global-2}; 
+        --section-dark-color: #{$color-global-2-dark};
+    }
+    &#premios {
+        --section-color: #{$color-global-1};
+        --section-dark-color: #{$color-global-1-dark};
+    }
+    &#dudas { 
+        --section-color: #{$color-global-3}; 
+        --section-dark-color: #{$color-global-3-dark};
+    }
+    &#reviews { --section-color: #{$color-light}; }
+}
+
+.side-image {
+    border: 5px solid var(--section-dark-color);
+    box-shadow: $color-shade 5px 5px 10px;
+
+    @include respond-to(lg) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    @include respond-to(xl) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    @include respond-to(md) {
+        width: 100%;
+        height: auto;
+        position: static;
+    }
+}
+
+hr {
+    border: 5px solid var(--section-dark-color);
+    border-radius: 10px;
+    margin: 30px 0;
+    width: 100%;
+    box-shadow: $color-shade 5px 5px 5px;
+}
+
+article {
+    width: 100%;
+    background-color: $color-light;
+    color: $color-dark;
+    border-radius: 10px;
+    padding: 15px;
+    padding-left: 25px;
+    position: relative;
+    box-shadow: 
+        inset var(--section-dark-color) 10px 0 0,
+        $color-shade 5px 5px 5px;
+
+    hr {
+        border: 3px solid var(--section-dark-color);
+        border-radius: 10px;
+        margin: 20px 0;
+        box-shadow: none;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    ol {
+        list-style: none;
+        counter-reset: my-counter;
+        padding-left: 0;
+
+        li {
+            width: auto;
+            counter-increment: my-counter;
+            position: relative;
+            margin-left: 5px;
+            padding-left: 35px;
+            margin-bottom: 15px;
+
+            &::before {
+                content: counter(my-counter);
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--section-dark-color);
+                font-weight: bold;
+                font-size: 30px;
+                font-family: 'Courier New', Courier, monospace;
+            }
+        }
+    }
+}
+
+.card {
+    background-color: var(--section-dark-color);
+    padding: 20px;
+    border: 3px solid $color-light;
+    border-radius: 10px;
+    box-shadow: $color-shade 5px 5px 5px;
+
+    @include flex-center;
+
+    h4 {
+        font-size: 1.5em;
+        text-align: center;
+        text-shadow: $color-shade 3px 3px;;
+    }
+
+    hr {
+        border: 2px solid $color-light;
+        margin: 0;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 1.2em;
+        margin: 20px 0 30px;
+    }
+
+    .row:not(:last-child) { margin-bottom: 20px; }
+
+    .sub-card {
+        width: 100%;
+        background-color: $color-light;
+        color: $color-dark;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: inset $color-shade 0 0 10px;   
+        transition: all 0.2s ease;
+
+        &:hover {
+            transform: scale(1.03);
+        }
+
+        h5 {
+            font-size: 1.5em;
+            color: var(--section-dark-color);
+            margin-bottom: 20px;
+        }
+
+        p { 
+            margin: 0; 
+        }
+        
+        i {
+            color: var(--section-dark-color);
+            font-size: 2.5em;
+            margin-right: 25px;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+.article-card {
+    width: 100%;
+    background-color: var(--section-dark-color);
+    border-radius: 10px;
+    box-shadow: $color-shade 5px 5px 5px;
+
+    h3 {
+        border-radius: 10px 10px 0 0;
+        text-align: left;
+        font-size: 26px;
+        text-shadow: $color-shade 3px 3px;
+
+        .icon { 
+            color: $color-light;
+            font-size: 1.2em;
+        }
+    }
+
+    article {
+        box-shadow: none;
+        width: calc(100% - 10px);
+        margin-left: 10px;
+
+        ul {
+            list-style: inside disc;
+        }
+    }
+}
+
+h1, h2, h3 {
+    background-color: var(--section-dark-color);
+    font-family: $font-secondary;
+    color: $color-light ;
+    width: 100%;
+    padding: 15px;
+    font-size: 32px;
+    text-align: center;
+}
+
+h2 {
+    border: 10px double $color-light;
+    box-shadow: $color-shade 5px 5px 5px;
+    text-shadow: $color-shade 3px 3px;
+}
+
+img {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    -webkit-user-drag: none;
+}
+
+.icon {
+    color: var(--section-dark-color);
+    margin-right: 10px;
+    width: 10px;
+    font-size: 1.5em;
+}
+
+.button {
+    display: inline-block;
+    width: 100%;
+    background-color: $color-global-button;
+    color: $color-dark;
+    border: 3px solid $color-dark;
+    border-radius: 10px;
+    padding: 15px 50px;
+    font-size: 20px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: $color-shade 5px 5px 5px;
+    margin: auto;
+    max-width: $breakpoint-sm;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 
+            $color-shade 5px 10px 15px,
+            inset $color-shade 0 -3px 10px 2px;
+    }
+}
+
+// Clase base para todos los elementos que se van a animar
+[class^="anim-slide-"] {
+    opacity: 0; // Invisibles por defecto
+    animation-fill-mode: forwards; // Mantiene el estado final (visible) al terminar
+}
+
+.anim-slide-left  { 
+    transform: translateX(-100px); 
+    animation: slideInLeft 0.8s ease-out forwards; 
+}
+.anim-slide-right { 
+    transform: translateX(100px); 
+    animation: slideInRight 0.8s ease-out forwards; 
+}
+.anim-slide-up    { 
+    transform: translateY(50px); 
+    animation: slideInUp 0.8s ease-out forwards; 
+}
+.anim-slide-down  { 
+    transform: translateY(-50px); 
+    animation: slideInDown 0.8s ease-out forwards; 
+}
+
+// Retrasar la entrada
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.6s; }
+
+
+// ======================================================== //
+// === SPECIFIC STYLES === //
+
+// MAIN HEADER
+#main-header {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -20px;
+        z-index: -1;
+        background: 
+            linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.06)),
+            url("../img/imagen1.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        filter: blur(1px);
+        transform: scale(1.1);
+    }
+    
+    .row {
+        position: relative;
+        z-index: 2;
+    }
+
+    h1 {
+        font-size: 3.5em;
+    }
+
+    h2 {
+        border: none;
+        text-shadow: none;
+        box-shadow: none;
+    }
+
+    p {
+        text-align: center;
+        font-size: 1.2em;
+    }
+}
+
+// "TIPO DE LOGROS"
+#tipos {
+    h4:nth-of-type(2) {
+        margin-top: 40px;
+    }
+}
+
+// "RECONOCIMIENTO PÚBLICO"
+#reconocimiento {
+    .card {
+        width: 100%;
+        background-color: var(--section-dark-color);
+        border: none;
+        border-radius: 10px;
+        box-shadow: $color-shade 5px 5px 5px;
+        padding: 0;
+
+        h3 {
+            border-radius: 10px 10px 0 0;
+            text-align: left;
+            font-size: 26px;
+            text-shadow: $color-shade 3px 3px;
+
+            .icon { 
+                font-size: 1.2em;
+                color: $color-light;
+                margin-right: 40px;
+            }
+        }
+
+        article {
+            box-shadow: none;
+            width: calc(100% - 10px);
+            margin-left: 10px;
+
+            ul {
+                list-style: inside disc;
+            }
+        }
+    }
+}
+
+
+// ======================================================== //
+// === DEBUG (IGNORE) ===
+
+// BORDERBOX
+* {
+    border: 0px solid red;
+}   
+
+// RESPONSIVE 
+body::after {
+    color: #fff;
+    text-shadow: #000 2px 1px;
+    font-weight: bold;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    z-index: 9999;
+    pointer-events: none;
+    content: "BREAKPOINT XL"; 
+    background-color: magenta;
+}
+@include respond-to(lg) { 
+    body::after { 
+        content: "BREAKPOINT LG"; 
+        background-color: orange;
+    }
+}
+@include respond-to(md) { 
+    body::after { 
+        content: "BREAKPOINT MD"; 
+        background-color: yellow;
+    }
+}
+@include respond-to(sm) { 
+    body::after { 
+        content: "BREAKPOINT SM"; 
+        background-color: cyan;
+    }
+}
+body::after { content: none; }
