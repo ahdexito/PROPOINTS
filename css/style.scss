@@ -209,6 +209,7 @@ article {
     p {
         font-size: 1.2em;
         margin: 20px 0 30px;
+        text-align: center;
     }
 
     .card-content {
@@ -328,7 +329,10 @@ h3 {
     color: var(--section-color-1);
 }
 
-h4 { font-family: $font-secondary; }
+h4 { 
+    font-family: $font-secondary; 
+    line-height: 1.2em;
+}
 
 img {
     -webkit-user-select: none;
