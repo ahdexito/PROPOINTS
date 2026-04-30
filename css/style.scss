@@ -10,18 +10,20 @@ $font-secondary: 'Oswald', sans-serif;
 // === COLOR PALETTE === //
 
 $color-light: #ffffff;
+$color-grey: #e0e0e0;
 $color-dark: #000000;
 $color-shade: #2a2a2a7d;
 
 $color-global-button: #e3ff38;
 $color-button-whatsapp: #40cf4b;
 
-$color-global-1: #57bf8c;
-$color-global-1-dark: #007a44;
-$color-global-2: #3ec1d3;
-$color-global-2-dark: #00446d;
-$color-global-3: #bae1f6;
-$color-global-3-dark: #1f3970;
+$color-global-1: #0c5635;
+$color-global-2: #02c268;
+$color-global-3: #d2ecd8;
+$color-global-4: #00446d;
+$color-global-5: #3ec1d3;
+$color-global-6: #c9e9ed;
+$color-global-7: #c7fff7;
 
 
 // ======================================================== //
@@ -93,17 +95,17 @@ body {
 }
 
 section {
-    padding: 20px 5% 100px;
+    padding-bottom: 100px;
     gap: 20px;
-    background-color: var(--section-color);
-    box-shadow: inset $color-shade 0 0 50px;
+    background-color: $color-grey;
 
     @include flex-center;
 
     .row {
         @include flex-center;
+        max-width: $breakpoint-lg;
         flex-direction: row;
-        gap: 20px;
+        gap: 10px;
         width: 100%;
         align-items: stretch;
 
@@ -114,53 +116,37 @@ section {
     }
 
     .col {
+        padding: 0 10px;
         position: relative;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         width: 100%;
-        gap: 20px;
+        gap: 10px;
 
-        @include respond-to(md) {
-            max-width: $breakpoint-sm;
-        }
+        @include respond-to(md) { max-width: $breakpoint-sm; }
 
         &.image-container {
             width: 80%;
             min-height: 200px;
 
-            @include respond-to(md) {
-                width: 100%;
-            }
+            @include respond-to(md) { width: 100%; }
 
-            @include respond-to(lg) {
-                height: auto;
-            }
+            @include respond-to(lg) { height: auto; }
         }
     }
 
     // Alternar colores de artículos
-    &#como-funciona { 
-        --section-color: #{$color-global-2}; 
-        --section-dark-color: #{$color-global-2-dark};
+    &:nth-of-type(2n + 2) { 
+        --section-color-1: #{$color-global-1}; 
+        --section-color-2: #{$color-global-2};
+        --section-color-3: #{$color-global-3};
     }
-    &#tipos {
-        --section-color: #{$color-global-1};
-        --section-dark-color: #{$color-global-1-dark};
+    &:nth-of-type(2n + 1) {
+        --section-color-1: #{$color-global-4}; 
+        --section-color-2: #{$color-global-5};
+        --section-color-3: #{$color-global-6};
     }
-    &#reconocimiento {
-        --section-color: #{$color-global-2}; 
-        --section-dark-color: #{$color-global-2-dark};
-    }
-    &#premios {
-        --section-color: #{$color-global-1};
-        --section-dark-color: #{$color-global-1-dark};
-    }
-    &#dudas { 
-        --section-color: #{$color-global-3}; 
-        --section-dark-color: #{$color-global-3-dark};
-    }
-    &#reviews { --section-color: #{$color-light}; }
 }
 
 .side-image {
@@ -190,84 +176,34 @@ section {
     }
 }
 
-hr {
-    border: 5px solid var(--section-dark-color);
-    border-radius: 10px;
-    margin: 30px 0;
-    width: 100%;
-    box-shadow: $color-shade 5px 5px 5px;
-}
-
 article {
     width: 100%;
-    background-color: $color-light;
     color: $color-dark;
     border-radius: 10px;
     padding: 15px;
     padding-left: 25px;
     position: relative;
-    box-shadow: 
-        inset var(--section-dark-color) 10px 0 0,
-        $color-shade 5px 5px 5px;
+    text-align: center;
 
-    hr {
-        border: 3px solid var(--section-dark-color);
-        border-radius: 10px;
-        margin: 20px 0;
-        box-shadow: none;
-    }
+    p { font-size: 1.2em; }
 
-    ul {
-        list-style-type: none;
-    }
-
-    ol {
-        list-style: none;
-        counter-reset: my-counter;
-        padding-left: 0;
-
-        li {
-            width: auto;
-            counter-increment: my-counter;
-            position: relative;
-            margin-left: 5px;
-            padding-left: 35px;
-            margin-bottom: 15px;
-
-            &::before {
-                content: counter(my-counter);
-                position: absolute;
-                left: 0;
-                top: 50%;
-                transform: translateY(-50%);
-                color: var(--section-dark-color);
-                font-weight: bold;
-                font-size: 30px;
-                font-family: 'Courier New', Courier, monospace;
-            }
-        }
-    }
+    ul { list-style-type: none; }
 }
 
 .card {
-    background-color: var(--section-dark-color);
-    padding: 20px;
-    border: 3px solid $color-light;
-    border-radius: 10px;
-    box-shadow: $color-shade 5px 5px 5px;
+    margin-top: 40px;
+    background-color: var(--section-color-1);
+    border-radius: 13px;
+    padding: 10px;
 
     @include flex-center;
 
     h4 {
-        font-size: 1.5em;
+        width: 100%;
+        padding: 10px;
+        font-size: 2em;
         text-align: center;
-        text-shadow: $color-shade 3px 3px;;
-    }
-
-    hr {
-        border: 2px solid $color-light;
-        margin: 0;
-        margin-bottom: 20px;
+        color: $color-light;
     }
 
     p {
@@ -275,36 +211,34 @@ article {
         margin: 20px 0 30px;
     }
 
-    .row:not(:last-child) { margin-bottom: 20px; }
-
-    .sub-card {
+    .card-content {
         width: 100%;
-        background-color: $color-light;
-        color: $color-dark;
+        display: flex;
+        @include respond-to(md) { flex-direction: column; }
+        gap: 10px;
+
+        &:not(:last-of-type) { margin-bottom: 10px; }
+    }
+
+    .card-small {
+        width: 100%;
+        background-color: var(--section-color-3);
+        color: var(--section-color-1);
         border-radius: 10px;
         padding: 20px;
         text-align: center;
-        box-shadow: inset $color-shade 0 0 10px;   
-        transition: all 0.2s ease;
-
-        &:hover {
-            transform: scale(1.03);
-        }
 
         h5 {
             font-size: 1.5em;
-            color: var(--section-dark-color);
+            color: var(--section-color-1);
             margin-bottom: 20px;
         }
 
-        p { 
-            margin: 0; 
-        }
+        p { margin: 0; }
         
         i {
-            color: var(--section-dark-color);
+            color: var(--section-color-1);
             font-size: 2.5em;
-            margin-right: 25px;
             margin-bottom: 20px;
         }
     }
@@ -312,48 +246,89 @@ article {
 
 .article-card {
     width: 100%;
-    background-color: var(--section-dark-color);
-    border-radius: 10px;
-    box-shadow: $color-shade 5px 5px 5px;
+    background-color: var(--section-color-1);
+    border-radius: 20px;
+    margin-bottom: 10px;
 
     h3 {
         border-radius: 10px 10px 0 0;
         text-align: left;
         font-size: 26px;
         text-shadow: $color-shade 3px 3px;
+        color: $color-light;
 
         .icon { 
             color: $color-light;
             font-size: 1.2em;
+            margin-right: 20px;
         }
     }
 
     article {
-        box-shadow: none;
         width: calc(100% - 10px);
         margin-left: 10px;
+        border: 5px solid var(--section-color-1);
+        border-radius: 20px;
+        box-shadow: none;
+        background-color: $color-light;
+        text-align: start;
 
-        ul {
+        & > ul {
             list-style: inside disc;
+
+            li {
+                margin-bottom: 20px;
+
+                &::marker {
+                    color: var(--section-color-1);
+                    font-size: 1.2em;
+                }
+
+                ul {
+                    list-style-type: circle;
+                    margin-left: 25px;
+                    margin-top: 5px;
+
+                    a { color: var(--section-color-1); } 
+
+                    li { margin: 0; }
+                }
+            }
+
+            li:last-child { margin: 0; }
+        }
+
+        b { 
+            color: var(--section-color-1); 
+            font-size: 1.1em;
         }
     }
 }
 
 h1, h2, h3 {
-    background-color: var(--section-dark-color);
     font-family: $font-secondary;
-    color: $color-light ;
+    color: var(--section-color-2);
     width: 100%;
     padding: 15px;
-    font-size: 32px;
     text-align: center;
 }
 
-h2 {
-    border: 10px double $color-light;
-    box-shadow: $color-shade 5px 5px 5px;
-    text-shadow: $color-shade 3px 3px;
+h2 { 
+    font-size: 3em; 
+    @include respond-to(md) { font-size: 2.3em; }
+    padding: 20px;
+    background-color: var(--section-color-1);
+    color: $color-light;
+    border-bottom: 10px solid var(--section-color-2);
+    line-height: 1.1em;
 }
+
+h3 { 
+    font-size: 2em; 
+    color: var(--section-color-1);
+}
+
+h4 { font-family: $font-secondary; }
 
 img {
     -webkit-user-select: none;
@@ -364,9 +339,7 @@ img {
 }
 
 .icon {
-    color: var(--section-dark-color);
-    margin-right: 10px;
-    width: 10px;
+    color: var(--section-color-1);
     font-size: 1.5em;
 }
 
@@ -375,26 +348,30 @@ img {
     width: 100%;
     background-color: $color-global-button;
     color: $color-dark;
-    border: 3px solid $color-dark;
     border-radius: 10px;
-    padding: 15px 50px;
+    padding: 15px;
     font-size: 20px;
     text-decoration: none;
     text-align: center;
     font-weight: bold;
+    line-height: 1.2em;
     cursor: pointer;
-    box-shadow: $color-shade 5px 5px 5px;
+    box-shadow: $color-shade 0 0 10px;
     margin: auto;
     max-width: $breakpoint-sm;
     transition: all 0.3s ease;
 
     &:hover {
         transform: translateY(-5px);
-        box-shadow: 
-            $color-shade 5px 10px 15px,
-            inset $color-shade 0 -3px 10px 2px;
+        box-shadow: $color-shade 0 5px 15px; 
+    }
+
+    span:nth-of-type(2) {
+        font-size: 0.5em;
+        font-weight: normal;
     }
 }
+
 
 // Clase base para todos los elementos que se van a animar
 [class^="anim-slide-"] {
@@ -431,7 +408,8 @@ img {
 #main-header {
     position: relative;
     overflow: hidden;
-    min-height: 100vh;
+    background: none;
+    padding: 40px;
 
     &::before {
         content: '';
@@ -439,12 +417,12 @@ img {
         inset: -20px;
         z-index: -1;
         background: 
-            linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.06)),
-            url("../img/imagen1.jpg");
+            linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+            url("../img/imagen2.jpg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        filter: blur(1px);
+        filter: blur(0px);
         transform: scale(1.1);
     }
     
@@ -455,17 +433,29 @@ img {
 
     h1 {
         font-size: 3.5em;
+        padding: 0;
+        color: $color-light;
     }
 
     h2 {
         border: none;
         text-shadow: none;
         box-shadow: none;
+        background: none;
     }
 
     p {
         text-align: center;
         font-size: 1.2em;
+    }
+}
+
+// "¿CÓMO FUNCIONA?"
+#como-funciona {
+    .card {
+        width: 100%;
+        max-width: $breakpoint-md;
+        margin: auto;
     }
 }
 
@@ -504,11 +494,63 @@ img {
             width: calc(100% - 10px);
             margin-left: 10px;
 
-            ul {
-                list-style: inside disc;
-            }
+            ul { list-style: inside disc; }
         }
     }
+}
+
+
+// "CATÁLOGO DE PREMIOS"
+#premios {
+    .card {
+        width: 100%;
+        max-width: $breakpoint-md;
+        margin: auto;
+    }
+
+    .card:nth-of-type(1) {
+        background-color: #af462c;
+
+        .card-small { 
+            background-color: #ffdbd3; 
+            font-weight: bold;
+            
+            i, p { color: #7d200c; }
+        }
+    }
+
+    .card:nth-of-type(2) {
+        background-color: #848484;
+
+        .card-small {
+            background-color: #e3e3e3;
+            font-weight: bold;
+
+            i, p { color: #4a4a4a; }
+        }
+    }
+
+    .card:nth-of-type(3) {
+        background-color: #d3b30f;
+
+        .card-small {
+            background-color: #fff5c5;
+            font-weight: bold;
+
+            i, p { color: #5d5010; }
+        }
+    }
+}
+
+// "GANADORES POR CATEGORÍA"
+#ganadores {
+    .article-card {
+        width: 100%;
+        max-width: $breakpoint-md;
+        margin: auto;
+    }
+
+    .button { margin-top: 20px; }
 }
 
 
@@ -516,9 +558,7 @@ img {
 // === DEBUG (IGNORE) ===
 
 // BORDERBOX
-* {
-    border: 0px solid red;
-}   
+* { border: 0px solid red; }   
 
 // RESPONSIVE 
 body::after {
